@@ -19,6 +19,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -51,40 +54,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
-                CircleItem()
-            }
-
-        }
-    }
-}
-
-@Composable
-private fun CircleItem() {
-    var counter = remember {
-        mutableIntStateOf(0)
-    }
-    var color = remember {
-        mutableStateOf(Color.Green)
-    }
-    Box(
-        modifier = Modifier
-            .size(100.dp)
-            .background(color = color.value, shape = CircleShape).clickable{
-                when(++counter.value){
-                    10 -> color.value = Color.Red
-                    20 -> color.value = Color.Yellow
-                    30 -> color.value = Color.Blue
+                itemsIndexed(
+                    listOf("item 1", "start 2", "end 3", "FINISH", "Alfa",
+                        "Radio", "Tajikistan", "Uzbekistan")
+                ){ _, item ->
+                    Text(
+                        text = item,
+                        fontSize = 30.sp,
+                        modifier = Modifier.padding(horizontal = 10.dp)
+                    )
                 }
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = counter.value.toString(),
-            style = TextStyle(color = Color.Black, fontSize = 25.sp)
-        )
+            }
+        }
     }
 }
