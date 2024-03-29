@@ -28,6 +28,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,40 +39,23 @@ import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.JetpackComposeProjectDarsYouTubeTheme
+import java.net.CookieHandler
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column (modifier = Modifier.verticalScroll(rememberScrollState())){
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
-                ListItem(name = "Dilshod Miraminov", prof = "JAVA DEVELOPER")
-                ListItem(name = "Mansur Ashrapov", prof = "C++ DEVELOPER")
-                ListItem(name = "Jahongir Qurbonov", prof = "PYTHON DEVELOPER")
-                ListItem(name = "Mubinjon Zoidov", prof = "KOTLIN DEVELOPER")
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
-                ListItem(name = "Dilshod Miraminov", prof = "JAVA DEVELOPER")
-                ListItem(name = "Mansur Ashrapov", prof = "C++ DEVELOPER")
-                ListItem(name = "Jahongir Qurbonov", prof = "PYTHON DEVELOPER")
-                ListItem(name = "Mubinjon Zoidov", prof = "KOTLIN DEVELOPER")
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
-                ListItem(name = "Dilshod Miraminov", prof = "JAVA DEVELOPER")
-                ListItem(name = "Mansur Ashrapov", prof = "C++ DEVELOPER")
-                ListItem(name = "Jahongir Qurbonov", prof = "PYTHON DEVELOPER")
-                ListItem(name = "Mubinjon Zoidov", prof = "KOTLIN DEVELOPER")
-                ListItem(name = "Vali Akhmedov", prof = "UX/UI")
-                ListItem(name = "Adbu Rahimov", prof = "PHP DEVELOPER")
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircleItem()
             }
 
         }
@@ -77,37 +63,28 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun ListItem(name: String, prof: String) {
-    Card(
+private fun CircleItem() {
+    var counter = remember {
+        mutableIntStateOf(0)
+    }
+    var color = remember {
+        mutableStateOf(Color.Green)
+    }
+    Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .pointerInput(Unit) {
-                detectDragGesturesAfterLongPress { change, dragAmount ->
-                    Log.d("MyLog", "Long press: $dragAmount")
+            .size(100.dp)
+            .background(color = color.value, shape = CircleShape).clickable{
+                when(++counter.value){
+                    10 -> color.value = Color.Red
+                    20 -> color.value = Color.Yellow
+                    30 -> color.value = Color.Blue
                 }
             },
-        shape = RoundedCornerShape(15.dp),
-        //elevation = 5.dp
+        contentAlignment = Alignment.Center
     ) {
-        Box() {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.image_1),
-                    contentDescription = "image",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .size(64.dp)
-                        .clip(CircleShape)
-                )
-                Column(Modifier.padding(start = 16.dp)) {
-                    Text(text = name)
-                    Text(text = prof)
-                }
-            }
-        }
+        Text(
+            text = counter.value.toString(),
+            style = TextStyle(color = Color.Black, fontSize = 25.sp)
+        )
     }
 }
