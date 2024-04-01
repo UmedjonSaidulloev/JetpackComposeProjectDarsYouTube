@@ -47,7 +47,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.Gray100
+import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.MyRow
+import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.ItemRowModel
 import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.JetpackComposeProjectDarsYouTubeTheme
+import com.example.jetpackcomposeprojectdarsyoutube.ui.theme.MyRow
 import java.net.CookieHandler
 
 class MainActivity : ComponentActivity() {
@@ -56,17 +60,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             LazyRow(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .background(Gray100)
             ) {
                 itemsIndexed(
-                    listOf("item 1", "start 2", "end 3", "FINISH", "Alfa",
-                        "Radio", "Tajikistan", "Uzbekistan")
-                ){ _, item ->
-                    Text(
-                        text = item,
-                        fontSize = 30.sp,
-                        modifier = Modifier.padding(horizontal = 10.dp)
-                    )
+                    listOf(
+                        ItemRowModel(R.drawable._1, "Sadridin Ayni"),
+                        ItemRowModel(R.drawable._2, "Mirzo Tursunzoda"),
+                        ItemRowModel(R.drawable._3, "Bobojon Gafurov"),
+                        ItemRowModel(R.drawable._4, "Emomali Rahmon"),
+                        ItemRowModel(R.drawable._5, "Shirinsho Shohtemur"),
+                        ItemRowModel(R.drawable._6, "Nusratullo Makhsum")
+                        )
+                ) { _, item ->
+                    MyRow(item = item)
                 }
             }
         }
