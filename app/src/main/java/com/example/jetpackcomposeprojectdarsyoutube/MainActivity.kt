@@ -58,19 +58,51 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LazyRow(
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Gray100)
             ) {
                 itemsIndexed(
                     listOf(
-                        ItemRowModel(R.drawable._1, "Sadridin Ayni"),
-                        ItemRowModel(R.drawable._2, "Mirzo Tursunzoda"),
-                        ItemRowModel(R.drawable._3, "Bobojon Gafurov"),
-                        ItemRowModel(R.drawable._4, "Emomali Rahmon"),
-                        ItemRowModel(R.drawable._5, "Shirinsho Shohtemur"),
-                        ItemRowModel(R.drawable._6, "Nusratullo Makhsum")
+                        ItemRowModel(
+                            R.drawable._1, "Sadridin Ayni",
+                            "(1878—1954) — адиб, олим ва асосгузори адабиёти " +
+                                    "муосири тоҷик. Аввалин Президенти Академияи илмҳои " +
+                                    "Ҷумҳурии Тоҷикистон. Соли 1997 бо унвони олии " +
+                                    "Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+                        ItemRowModel(
+                            R.drawable._3, "Bobojon Gafurov",
+                            "(1909—1977) — донишманд, академики Академияи" +
+                                    " Илмҳои ИҶШС, арбоби ҳизбӣ ва давлатӣ, " +
+                                    "муаллифи китоби «Тоҷикон». Соли 1997 бо " +
+                                    "унвони олии Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+                        ItemRowModel(
+                            R.drawable._4, "Emomali Rahmon",
+                            "— сиёсатмадор, Президенти Ҷумҳурии Тоҷикистон. Соли " +
+                                    "1999 барои мустаҳкам намудани давлатдории " +
+                                    "соҳибистиқлол ва пойдории сулҳ дар Ҷумҳурии Тоҷикистон" +
+                                    " бо унвони олии Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+                        ItemRowModel(
+                            R.drawable._2, "Mirzo Tursunzoda",
+                            " (1911—1977) — шоир, раиси Иттифоқи нависандагони" +
+                                    " Тоҷикистон, Қаҳрамони Меҳнати Сотсиалистӣ." +
+                                    " Соли 2001 бо унвони олии Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+                        ItemRowModel(
+                            R.drawable._6, "Nusratullo Makhsum",
+                            " (1881—1938) — ходими давлатӣ ва ҳизбӣ. Соли 2006" +
+                                    " бо унвони олии Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+                        ItemRowModel(
+                            R.drawable._5, "Shirinsho Shohtemur",
+                            "(1899—1937) — ходими давлатӣ ва ҳизбӣ. Соли 2006, " +
+                                    "бо унвони олии Қаҳрамони Тоҷикистон қадр шудааст."
+                        ),
+
                         )
                 ) { _, item ->
                     MyRow(item = item)
